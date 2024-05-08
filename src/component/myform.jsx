@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Myform() {
   const [city, setCity] = useState('');
+  const [email, setEmail] = useState('');
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -13,12 +14,18 @@ export default function Myform() {
     }
     // If city field is not empty, you can proceed with form submission logic here
     console.log('Form submitted successfully');
-    navigate('/hello');
+    navigate('/hello',{ state: { email } });
   };
 
   const handleChange = (event) => {
     setCity(event.target.value);
   };
+    
+    
+    const handleEmailChange = (event) => {
+      setEmail(event.target.value);
+    };
+
   return (
     <><div> <h2>Register</h2></div>
     
@@ -26,7 +33,7 @@ export default function Myform() {
     <form class="row g-3" onSubmit={handleSubmit}>
   <div class="col-md-6">
     <label for="inputEmail4" class="form-label">Email</label>
-    <input type="email" class="form-control" id="inputEmail4"/>
+    <input type="email" class="form-control" id="inputEmail4" value={email} onChange={handleEmailChange}/>
   </div>
   <div class="col-md-6">
     <label for="inputPassword4" class="form-label">Password</label>
