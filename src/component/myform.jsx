@@ -1,8 +1,10 @@
 import React , { useState } from 'react'
 import './styles.css'
-export default function Register() {
-  const [city, setCity] = useState('');
+import { useNavigate } from 'react-router-dom';
 
+export default function Myform() {
+  const [city, setCity] = useState('');
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     if (city.trim() === '') {
@@ -11,6 +13,7 @@ export default function Register() {
     }
     // If city field is not empty, you can proceed with form submission logic here
     console.log('Form submitted successfully');
+    navigate('/hello');
   };
 
   const handleChange = (event) => {
