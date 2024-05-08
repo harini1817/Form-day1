@@ -1,157 +1,68 @@
-import React , { useState }from 'react'
-import  './styles.css';
+import React , { useState } from 'react'
+import './styles.css'
+export default function Register() {
+  const [city, setCity] = useState('');
 
-export default function Myform() {
-  const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState('');
-
-  const handleChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!email.trim()) {
-      setEmailError('Email is required');
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (city.trim() === '') {
+      alert('Please enter a city');
       return;
     }
-    if (!validateEmail(email)) {
-      setEmailError('Please enter a valid email');
-      return;
-    }
-    // Form submission logic here
-    console.log('Form submitted:', email);
+    // If city field is not empty, you can proceed with form submission logic here
+    console.log('Form submitted successfully');
   };
 
-  const validateEmail = (email) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(String(email).toLowerCase());
+  const handleChange = (event) => {
+    setCity(event.target.value);
   };
-
   return (
-<section class="box"> 
-        <h3>Sign in</h3> 
-        <form  onsubmit="{handleSubmit}">
-        <div className="row">
-          <div className="col">
-            <label> Firstname : </label>
-          </div>
-          <div className="col">
-            <input type="text" name="firstname" size="15" />
-          </div>
-          <div className="col">
-            <label> Lastname: </label>
-          </div>
-          <div className="col">
-            <input type="text" name="lastname" size="15" /> 
-            
-          </div>
-        </div>
-
-
-          <div className="row">
-          <div className="col-sm-2">
-            <label>Course :</label>
-          </div>
-          <div className="col">
-            <select>
-              <option value="Course">Course</option>
-              <option>IT</option>
-              <option>CSE</option>
-              <option>EEE</option>
-            </select>
-          </div>
-          <div className="col">
-            <label className="radio"> Gender: </label>
-          </div>
-          <div className="col">
-            <input type="radio" name="radio" /> Male 
-            <input type="radio" name="radio" /> Female 
-          </div>
-        </div>
-
-      <div class="row">
-        <div class="col-2">
-            <label>Phone:</label>
-            </div>
-                
-            <div className='col-4'>
-              <input type="text" name="country code" value="+91" size="2" />
-              <input type="text" name="phone" size="10" />
-            </div>
-        </div>
-            
+    <><div> <h2>Register</h2></div>
     
-  
-        
-
-<div class="row">
-  <div class="col-2">
-    <label>Address:</label>
+<div class='box'>
+    <form class="row g-3" onSubmit={handleSubmit}>
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Email</label>
+    <input type="email" class="form-control" id="inputEmail4"/>
   </div>
-  <div className='col-4'>
-    <textarea cols="20" rows="3" value="address"></textarea>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Password</label>
+    <input type="password" class="form-control" id="inputPassword4"/>
   </div>
-</div>
-
-
-        <div className="row">
-          <div className="col-2">
-            <label>Email: </label>
-          </div>
-          <div className="col">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Enter your valid email id"
-            />
-          </div>
-          <div className="col">
-            <label for="">DOB:</label>
-          </div>
-          <div className="col">
-            <input type="date"/>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-2">
-            <label for="psw">Password:</label>
-          </div>
-          <div className="col">
-            <input
-              type="password"
-              id="psw"
-              name="psw"
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-              title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-              required
-            />
-          </div>
-            <div className="col-5">
-            <button>Check</button>
-            </div>
-            
-          
-        
-          
-          
-        </div>
-
-        <div class="row">
-          <div class="col-2">
-            <button>submit</button>
-          </div>
-        </div>
-        </form>
-
-
-
-
-
-
-</section>
+  <div class="col-12">
+    <label for="inputAddress" class="form-label">Address</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"/>
+  </div>
+  <div class="col-12">
+    <label for="inputAddress2" class="form-label">Address 2</label>
+    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor"/>
+  </div>
+  <div class="col-md-6">
+    <label for="City" class="form-label">City</label>
+    <input type="text" className="form-control" id="inputCity" value={city} onChange={handleChange} />  </div>
+  <div class="col-md-4">
+    <label for="inputState" class="form-label">State</label>
+    <select id="inputState" class="form-select">
+      <option selected>Choose...</option>
+      <option>...</option>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <label for="inputZip" class="form-label">Zip</label>
+    <input type="text" class="form-control" id="inputZip"/>
+  </div>
+  <div class="col-3">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck"/>
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </div>
+</form>
+</div> </>
   )
 }
-
