@@ -12,19 +12,24 @@ export default function Myform() {
       alert('Please enter a city');
       return;
     }
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      alert('Please enter a valid email address');
+      return;
+    }
+          
     // If city field is not empty, you can proceed with form submission logic here
     console.log('Form submitted successfully');
     navigate('/hello',{ state: { email } });
   };
 
   const handleChange = (event) => {
-    setCity(event.target.value);
-  };
-    
-    
-    const handleEmailChange = (event) => {
+    if (event.target.id === 'inputEmail4') {
       setEmail(event.target.value);
-    };
+    } else if (event.target.id === 'inputCity') {
+      setCity(event.target.value);
+    }
+  };
+  
 
   return (
     <><div> <h2>Register</h2></div>
@@ -33,7 +38,7 @@ export default function Myform() {
     <form class="row g-3" onSubmit={handleSubmit}>
   <div class="col-md-6">
     <label for="inputEmail4" class="form-label">Email</label>
-    <input type="email" class="form-control" id="inputEmail4" value={email} onChange={handleEmailChange}/>
+    <input type="email" class="form-control" id="inputEmail4" value={email} onChange={handleChange}/>
   </div>
   <div class="col-md-6">
     <label for="inputPassword4" class="form-label">Password</label>
